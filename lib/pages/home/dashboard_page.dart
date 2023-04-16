@@ -1,4 +1,5 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/theme.dart';
@@ -32,7 +33,7 @@ class _DashboardPageState extends State<DashboardPage> {
             child: IndexedStack(
               index: controller.tabIndex,
               children: [
-                const HomePage(),
+                HomePage(),
                 WishlistPage(),
                 ProfilePage(),
               ],
@@ -41,26 +42,41 @@ class _DashboardPageState extends State<DashboardPage> {
           bottomNavigationBar: CurvedNavigationBar(
             backgroundColor: transparentColor,
             color: backgroundColor3,
-            height: 55,
+            height: 80,
             buttonBackgroundColor: primaryColor,
             onTap: controller.changeTabIndex,
             index: controller.tabIndex,
-            items: const [
-              Icon(
-                Icons.home,
-                size: 30,
-                color: Colors.white,
-              ),
-              Icon(
-                Icons.watch_later,
-                size: 30,
-                color: Colors.white,
-              ),
-              Icon(
-                Icons.person,
-                size: 30,
-                color: Colors.white,
-              ),
+            items: [
+              CurvedNavigationBarItem(
+                  child: const Icon(
+                    Icons.home,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  label: 'Home',
+                  labelStyle: controller.tabIndex == 0
+                      ? const TextStyle(color: Color(0xffFEA9BD))
+                      : const TextStyle(color: Colors.white)),
+              CurvedNavigationBarItem(
+                  child: const Icon(
+                    Icons.watch_later,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  label: 'Watchlist',
+                  labelStyle: controller.tabIndex == 1
+                      ? const TextStyle(color: Color(0xffFEA9BD))
+                      : const TextStyle(color: Colors.white)),
+              CurvedNavigationBarItem(
+                  child: const Icon(
+                    Icons.person,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  label: 'Credit',
+                  labelStyle: controller.tabIndex == 2
+                      ? const TextStyle(color: Color(0xffFEA9BD))
+                      : const TextStyle(color: Colors.white)),
             ],
           ),
         );

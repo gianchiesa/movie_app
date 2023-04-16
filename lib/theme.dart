@@ -49,11 +49,11 @@ TextStyle alertTextStyle = GoogleFonts.poppins(
   color: dangerColor,
 );
 
-TextStyle pinkTextStyle = GoogleFonts.poppins(
+TextStyle pinkTextStyle = GoogleFonts.nunito(
   color: primaryColor,
 );
 
-TextStyle whiteTextStyle = GoogleFonts.poppins(
+TextStyle whiteTextStyle = GoogleFonts.nunito(
   color: Colors.white,
 );
 

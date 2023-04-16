@@ -24,7 +24,7 @@ class WishlistPage extends StatelessWidget {
             ),
           ),
           Text(
-            "Assistive Aquaculture Breeding Management",
+            "Movie App",
             textAlign: TextAlign.center,
             style: pinkTextStyle.copyWith(
               fontSize: 16,
@@ -32,12 +32,12 @@ class WishlistPage extends StatelessWidget {
             ),
           ),
           Text(
-            "by Aquaculture Tech",
+            "by Gian Chiesa Maghriza",
             style: secondaryTextStyle.copyWith(
               fontSize: 14,
               fontWeight: medium,
             ),
-          ),
+          )
         ]),
       );
     }

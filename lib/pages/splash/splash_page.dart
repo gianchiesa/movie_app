@@ -24,16 +24,17 @@ class SplashPage extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 12),
           Text(
-            "Assistive Aquaculture Breeding Management",
+            "Movie App",
             textAlign: TextAlign.center,
             style: pinkTextStyle.copyWith(
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: bold,
             ),
           ),
           Text(
-            "by Aquaculture Tech",
+            "by Gian Chiesa Maghriza",
             style: secondaryTextStyle.copyWith(
               fontSize: 14,
               fontWeight: medium,
