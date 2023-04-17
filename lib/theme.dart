@@ -17,7 +17,7 @@ Color backgroundColor5 = const Color(0xff2B2844);
 Color backgroundColor6 = const Color(0xffECEDEF);
 Color primaryTextColor = const Color(0xffF1F0F2);
 Color secondaryTextColor = const Color(0xff999999);
-Color subtitleColor = const Color(0xff504F5E);
+Color subtitleColor = const Color.fromARGB(255, 179, 179, 179);
 Color transparentColor = Colors.transparent;
 Color blackColor = const Color(0xff2E2E2E);
 
@@ -55,6 +55,10 @@ TextStyle pinkTextStyle = GoogleFonts.nunito(
 
 TextStyle whiteTextStyle = GoogleFonts.nunito(
   color: Colors.white,
+);
+
+TextStyle greyTextStyle = GoogleFonts.nunito(
+  color: Colors.grey,
 );
 
 FontWeight light = FontWeight.w300;

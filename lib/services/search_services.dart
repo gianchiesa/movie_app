@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movie_app/models/popular_movies_model.dart';
+import 'package:movie_app/models/search_movie_model.dart';
 
-class PopularMoviesService {
-  Future<List<PopularMovie>> getPopularMovies() async {
+class SearchMoviesService {
+  Future<List<SearchMovie>> getSearchMovies(String keyword) async {
     // final queryParameters = {
     //   'api_key': Urls.apiKey,
     // };
     var url = Uri.parse(
-        "https://api.themoviedb.org/3/movie/popular?api_key=59f583eafafc993371713ae20a84d390");
+        "https://api.themoviedb.org/3/search/movie?api_key=59f583eafafc993371713ae20a84d390&query=$keyword&page=1");
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(url, headers: headers);
@@ -16,10 +16,10 @@ class PopularMoviesService {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       var movie = data['results'];
-      List<PopularMovie> movies = [];
+      List<SearchMovie> movies = [];
 
       for (var item in movie) {
-        movies.add(PopularMovie.fromJson(item));
+        movies.add(SearchMovie.fromJson(item));
       }
 
       return movies;
