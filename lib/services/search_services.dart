@@ -7,8 +7,10 @@ class SearchMoviesService {
     // final queryParameters = {
     //   'api_key': Urls.apiKey,
     // };
+
+    String key = keyword.replaceAll(RegExp('\\s+'), '+');
     var url = Uri.parse(
-        "https://api.themoviedb.org/3/search/movie?api_key=59f583eafafc993371713ae20a84d390&query=$keyword&page=1");
+        "https://api.themoviedb.org/3/search/movie?api_key=59f583eafafc993371713ae20a84d390&query=$key&page=1");
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(url, headers: headers);

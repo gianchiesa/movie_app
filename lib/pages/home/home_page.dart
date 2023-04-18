@@ -170,7 +170,7 @@ class HomePage extends StatelessWidget {
 
     Widget topRated() {
       return SizedBox(
-        height: 250,
+        height: 270,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: controller.topRatedMovieList.length,
