@@ -3,6 +3,7 @@ import 'package:movie_app/theme.dart';
 import 'package:get/get.dart';
 import '../../controllers/search/search_movie_controller.dart';
 import '../../services/url_api.dart';
+import '../detail/detail_movie_page.dart';
 
 class SearchMoviePage extends StatelessWidget {
   SearchMoviePage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class SearchMoviePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget movieTitle() {
+    Widget searchTitle() {
       return Container(
         margin: EdgeInsets.only(
           left: defaultMargin,
@@ -27,7 +28,7 @@ class SearchMoviePage extends StatelessWidget {
       );
     }
 
-    Widget genreMovie() {
+    Widget subtitleMovie() {
       return Container(
         margin: EdgeInsets.only(
           left: defaultMargin,
@@ -81,8 +82,19 @@ class SearchMoviePage extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: ((context, index) {
               return GestureDetector(
-                onTap: (() {}),
+                onTap: (() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailMoviePage(
+                                movieId: controller.searchMovieList[index].id
+                                    .toString(),
+                              )));
+                }),
                 child: Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      color: Color(0xff151515)),
                   margin: const EdgeInsets.only(top: 16, right: 20, left: 20),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,7 +157,7 @@ class SearchMoviePage extends StatelessWidget {
       );
     }
 
-    Widget logo() {
+    Widget emptyList() {
       return Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
@@ -189,11 +201,11 @@ class SearchMoviePage extends StatelessWidget {
           backgroundColor: backgroundColor1,
           body: ListView(
             children: [
-              movieTitle(),
+              searchTitle(),
               const SizedBox(
                 height: 8,
               ),
-              genreMovie(),
+              subtitleMovie(),
               const SizedBox(
                 height: 8,
               ),
@@ -201,7 +213,7 @@ class SearchMoviePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              controller.searchMovieList.isEmpty ? logo() : listSearch()
+              controller.searchMovieList.isEmpty ? emptyList() : listSearch()
             ],
           ),
         );

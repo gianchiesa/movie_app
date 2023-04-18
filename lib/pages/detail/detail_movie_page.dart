@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/theme.dart';
 import 'package:get/get.dart';
 import '../../controllers/detail/detail_movie_controller.dart';
+import '../../controllers/wishlist/wishlist_controller.dart';
 import '../../services/url_api.dart';
 
 class DetailMoviePage extends StatefulWidget {
@@ -14,12 +15,33 @@ class DetailMoviePage extends StatefulWidget {
 
 class _DetailMoviePageState extends State<DetailMoviePage> {
   final DetailMovieController controller = Get.put(DetailMovieController());
+  final WishlistController watchlistcontroller = Get.put(WishlistController());
   @override
   void initState() {
     super.initState();
-    controller.getCastData(widget.movieId);
-    controller.getCrewData(widget.movieId);
     controller.getDetailData(widget.movieId);
+  }
+
+  void dialog() {
+    showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title:
+                  const Text('Success', style: TextStyle(color: Colors.green)),
+              content: const Text(
+                'Let`s check your watchlist now',
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: backgroundColor1,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16.0))),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('OK'),
+                ),
+              ],
+            ));
   }
 
   @override
@@ -32,7 +54,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
               image: NetworkImage(
-                  "${Urls.imgUrl}${controller.detailMovieData[0].posterPath!}"),
+                  "${Urls.imgUrl}${controller.detailMovieData.value.posterPath}"),
               fit: BoxFit.cover),
         ),
       );
@@ -46,7 +68,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
           right: defaultMargin,
         ),
         child: Text(
-          controller.detailMovieData[0].title.toString(),
+          controller.detailMovieData.value.title.toString(),
           style: whiteTextStyle.copyWith(
             fontSize: 22,
             fontWeight: bold,
@@ -78,7 +100,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
           right: defaultMargin,
         ),
         child: Text(
-          controller.detailMovieData[0].overview.toString(),
+          controller.detailMovieData.value.overview.toString(),
           style: whiteTextStyle.copyWith(
             fontSize: 16,
             fontWeight: medium,
@@ -119,7 +141,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
             ),
             const SizedBox(width: 4),
             Text(
-              'Popularity: ${controller.detailMovieData[0].popularity.toString()}',
+              'Popularity: ${controller.detailMovieData.value.popularity.toString()}',
               style: greyTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: regular,
@@ -132,7 +154,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
             ),
             const SizedBox(width: 4),
             Text(
-              controller.detailMovieData[0].vote.toString(),
+              controller.detailMovieData.value.vote.toString(),
               style: greyTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: regular,
@@ -149,7 +171,11 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
         width: double.infinity,
         margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
         child: TextButton(
-          onPressed: () async {},
+          onPressed: () async {
+            controller.postWatchlistData(
+                controller.detailMovieData.value.id!.toString());
+            dialog();
+          },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
@@ -158,6 +184,34 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
           ),
           child: Text(
             'Add To Watchlist',
+            style: whiteTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: bold,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget removeWatchlistButton() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
+        child: TextButton(
+          onPressed: () async {
+            controller.deleteWatchlistData(
+                controller.detailMovieData.value.id!.toString());
+            dialog();
+          },
+          style: TextButton.styleFrom(
+            backgroundColor: dangerColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: Text(
+            'Remove From Watchlist',
             style: whiteTextStyle.copyWith(
               fontSize: 16,
               fontWeight: bold,
@@ -210,6 +264,16 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                 borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
             )),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () async {
+                // Get.back();
+
+                Navigator.pop(context);
+
+                watchlistcontroller.getWatchlistData();
+              },
+            ),
           ),
           backgroundColor: backgroundColor1,
           body: ListView(
@@ -234,7 +298,9 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
               const SizedBox(
                 height: 4,
               ),
-              watchlistButton(),
+              controller.isWatchlist.value
+                  ? removeWatchlistButton()
+                  : watchlistButton(),
               const SizedBox(
                 height: 8,
               ),

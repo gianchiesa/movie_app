@@ -34,7 +34,7 @@ class _DashboardPageState extends State<DashboardPage> {
               index: controller.tabIndex,
               children: [
                 HomePage(),
-                WishlistPage(),
+                const WishlistPage(),
                 ProfilePage(),
               ],
             ),

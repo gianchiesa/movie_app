@@ -13,29 +13,27 @@ class DetailMovie {
   num? popularity;
 
   DetailMovie(
-      {required this.id,
-      required this.originalTitle,
-      required this.title,
-      required this.overview,
-      required this.backdropPath,
-      required this.posterPath,
-      required this.releaseDate,
-      required this.genre,
-      required this.vote,
-      required this.popularity});
+      {this.id,
+      this.originalTitle,
+      this.title,
+      this.overview,
+      this.backdropPath,
+      this.posterPath,
+      this.releaseDate,
+      this.genre,
+      this.vote,
+      this.popularity});
 
-  factory DetailMovie.fromJson(Map<String, dynamic> json) {
-    return DetailMovie(
-      id: json['id'],
-      originalTitle: json['original_title'],
-      title: json['title'],
-      overview: json['overview'],
-      backdropPath: json['backdrop_path'],
-      posterPath: json['poster_path'],
-      releaseDate: json['release_date'],
-      vote: json['vote_average'],
-      popularity: json['popularity'],
-      genre: GenreMovie.fromJsonList(json['genres']),
-    );
+  DetailMovie.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    originalTitle = json['original_title'];
+    title = json['title'];
+    overview = json['overview'];
+    backdropPath = json['backdrop_path'];
+    posterPath = json['poster_path'];
+    releaseDate = json['release_date'];
+    vote = json['vote_average'];
+    popularity = json['popularity'];
+    genre = GenreMovie.fromJsonList(json['genres']);
   }
 }

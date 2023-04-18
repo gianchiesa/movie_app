@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
       return Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
+            margin: const EdgeInsets.only(top: 150),
             width: 100,
             height: 100,
             decoration: const BoxDecoration(
