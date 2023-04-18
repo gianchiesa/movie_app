@@ -16,7 +16,7 @@ Merupakan sebuah aplikasi yang menampilkan daftar film dan memungkinkan pengguna
 
 OR
 
-atau bisa langsung instal dan jalakan ![APK](docs/apk/movie_app.apk) pada HP android anda 
+atau bisa langsung instal dan jalakan [APK](docs/apk/movie_app.apk) pada HP android anda 
 
 ### How to operate the apps
 
