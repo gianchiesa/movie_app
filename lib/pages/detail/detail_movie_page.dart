@@ -141,7 +141,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
             ),
             const SizedBox(width: 4),
             Text(
-              'Popularity: ${controller.detailMovieData.value.popularity.toString()}',
+              'Release Date: ${controller.detailMovieData.value.releaseDate.toString()}',
               style: greyTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: regular,
