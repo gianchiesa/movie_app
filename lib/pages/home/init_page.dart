@@ -63,7 +63,7 @@ class _InitPageState extends State<InitPage> {
         mySession,
       );
       // ignore: use_build_context_synchronously
-      Navigator.push(context,
+      Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => const DashboardPage()));
     } else {
       showDialog<String>(
