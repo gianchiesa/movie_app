@@ -1,16 +1,20 @@
 # movie_app
 
-A new Flutter project.
+Merupakan sebuah aplikasi yang menampilkan daftar film dan memungkinkan pengguna untuk melihat detail setiap film, menambahkan film ke daftar tontonan mereka, dan mencari film berdasarkan judul menggunakan **The Movie Database API**
 
-## Getting Started
+## How To Run
 
-This project is a starting point for a Flutter application.
+1. Clone source code
 
-A few resources to get you started if this is your first Flutter project:
+2. Jalankan pada Visual Studio Code
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+3. Jalankan ```flutter pub get``` pada terminal
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Pastikan anda sudah terkoneksi dengan emulator
+
+5. tekan *F5*
+
+### How to operate the apps
+
+
+
