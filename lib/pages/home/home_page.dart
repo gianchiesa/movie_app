@@ -150,7 +150,7 @@ class HomePage extends StatelessWidget {
                                   softWrap: false,
                                 ),
                                 Text(
-                                  'Popularity: ${i.popularity.toString()}',
+                                  'Release: ${i.releaseDate.toString()}',
                                   style: whiteTextStyle.copyWith(
                                     fontSize: 12,
                                   ),
@@ -244,7 +244,18 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ],
-                      )
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        controller.topRatedMovieList[index].releaseDate
+                            .toString(),
+                        style: greyTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),

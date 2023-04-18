@@ -4,6 +4,7 @@ class TopRatedMovie {
   String? originalTitle;
   String? posterPath;
   String? title;
+  String? releaseDate;
   num? vote;
 
   TopRatedMovie(
@@ -11,6 +12,7 @@ class TopRatedMovie {
       required this.originalTitle,
       required this.title,
       required this.backdropPath,
+      required this.releaseDate,
       required this.posterPath,
       required this.vote});
 
@@ -21,6 +23,7 @@ class TopRatedMovie {
         title: json['title'],
         backdropPath: json['backdrop_path'],
         posterPath: json['poster_path'],
+        releaseDate: json['release_date'],
         vote: json['vote_average']);
   }
 }
